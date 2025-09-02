@@ -1,0 +1,26 @@
+{
+  "name": "harry-potter-api",
+  "version": "1.0.0",
+  "description": "API HTTP sobre películas de Harry Potter usando Node.js y SQLite3",
+  "main": "app.js",
+  "scripts": {
+    "start": "node api.js",
+    "dev": "nodemon api.js"
+  },
+  "keywords": [
+    "harry-potter",
+    "api",
+    "nodejs",
+    "sqlite3",
+    "express"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}

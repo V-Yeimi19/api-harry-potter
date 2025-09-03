@@ -1,9 +1,12 @@
 // app.js
 const express = require('express');
-const db = require('./db');
+const multer  = require('multer');
+const db = require('./db.js');
 
 const app = express();
 const PORT = 8000;
+
+const upload = multer();
 
 app.use(express.json()); // Para parsear JSON en requests
 
@@ -33,7 +36,7 @@ app.get('/movies/:id', (req, res) => {
 });
 
 // Agregar una nueva película
-app.post('/movies', (req, res) => {
+app.post('/movies', upload.none(), (req, res) => {
   const { title, year, director } = req.body;
   if (!title || !year) {
     return res.status(400).json({ error: 'title y year son obligatorios' });
@@ -52,7 +55,7 @@ app.post('/movies', (req, res) => {
 });
 
 // Actualizar una película
-app.put('/movies/:id', (req, res) => {
+app.put('/movies/:id', upload.none(), (req, res) => {
   const { id } = req.params;
   const { title, year, director } = req.body;
   db.run(
@@ -84,6 +87,6 @@ app.delete('/movies/:id', (req, res) => {
   });
 });
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Servidor corriendo en http://0.0.0.0:${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
